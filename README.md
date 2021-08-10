@@ -1,286 +1,115 @@
-# [Alembic](https://alembic.darn.es/)
-[![Gem Version](https://badge.fury.io/rb/alembic-jekyll-theme.svg)](https://badge.fury.io/rb/alembic-jekyll-theme)
-
-⚗ A Jekyll boilerplate theme designed to be a starting point for any Jekyll website.
-
-![Screenshot](https://raw.githubusercontent.com/daviddarnes/alembic/master/screenshot.png)
-
-[<img src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" width="217"/>](https://buymeacoffee.com/daviddarnes#support)
-
-## Contents
-- [About](#about)
-- [Features](#features)
-- [Examples](#examples)
-- [Installation](#installation)
-- [Customising](#customising)
-- [Configuration](#configuration)
-  - [Gem dependency settings](#gem-dependency-settings)
-  - [Site settings](#site-settings)
-  - [Site performance settings](#site-performance-settings)
-  - [Site navigation](#site-navigation)
-  - [Custom fonts](#custom-fonts)
-- [Using includes](#using-includes)
-- [Page layouts](#page-layouts)
-- [Page and Post options](#page-and-post-options)
-- [Credits](#credits)
+# Bulungula Tech Centre
+This repository contains the instructions to replicate the low-cost, low-power computer lab we built at the Bulungula College, a school in rural South Africa. Our goal was to use free and open-source software to make this solution as accessible as possible. Please see our [`GitHub Pages Site`](https://jcformanek.github.io/bulungula-tech-center/) for more about the project's motivation and context.
 
-## About
+## Overview
 
-**Alembic is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate theme is designed to get rolling immediately. Install it, configure it, tweak it, push it.**
+### Power and Internet Constraints
+Our solution is targeted at rural schools which may have significant electricity and internet constrains. In our case, the school was completly off grid and relied on a solar-panel installation for electricity. The school also had limited access to the internet. The only way to get online was to use an LTE router which, in such a remote area, can be unreliable and expensive. 
 
-## Features
+To operate within the power constraint, our solution proposes using Raspberry Pis instead of fully fledged PCs. Raspberry Pis are relativly inexpensive and consume very little power. This makes them the perfect solution for the off-grid setting. To adress the internet constraint, we propose an offline content sharing server such that learning materials can be downloaded from the internet once and then shared indefinitely on the local network.
 
-- Available as a **theme gem** and **GitHub Pages** theme
-- Clear and elegant design that can be used out of the box or as solid starting point
-- Tested in all major browsers, including **IE and Edge**
-- Built in **Service Worker** so it can work offline and on slow connections
-- **Configurable colours** and typography in a single settings file
-- Extensive set of **shortcodes** to include various elements; such as buttons, icons, figure images and more
-- Solid **typographic framework** from [Sassline](https://sassline.com/)
-- Configurable navigation via a single file
-- Modular Jekyll components
-- Post category support in the form of a single post index page grouped by category
-- Built in live search using JavaScript
-- **Contact form** built in using [Formspree](https://formspree.io/) or [Netlify Forms](https://www.netlify.com/features/#forms)
-- Designed with **[Siteleaf](http://www.siteleaf.com/)** in mind
-- Has 9 of the most popular networks as performant sharing buttons
-- Has documentation
+### Client-Server Architecture
+To facilitate easy administration and maintainance of the computer lab we used a client-server architecture whereby there is one central server-PC which controls all of the client PCs. This setup is useful because it allows one to control all of the cleint PCs from the central PC. This makes it easy to push software and security updates to all of the client PCs. Moreover, the server stores the shared content on the local network for the clients.
 
-## Examples
+Another benefit of the client-server architecture is that we can network-boot the Raspberry Pis from the server. So, instead of attaching storage and an OS to each indevidual Raspberry Pi we can serve the operating system to all the Pis over the local network. The file system is stored and shared on the central server which means that users can login into their account on any of the client PCs and have access to their files. This kind of networked solution can cost thousands of dollars if you use enterprise software but thankfully there is an incredible free and open-source solution developed by the Raspberry Pi Foundation called [`Piserver`](https://github.com/raspberrypi/piserver) which we used for this project. 
 
-Here are a few examples of Alembic out in the wild being used in a variety of ways:
+### Offline Digital Learning Platform
+To give the students using the computer lab the best digital learning experience possible we propose using [`Kolibri`](https://learningequality.org/kolibri/), an incredible free and open-source Offline Digital Learning Platform developed by the Learning Equality Foundation. `Kolibri` makes it possible for teachers to create digital lessons for their students in the computer centre.
 
-- [billmei.net](https://billmei.net/)
-- [bawejakunal.github.io](https://bawejakunal.github.io/)
-- [case2111.github.io](https://case2111.github.io/)
-- [karateca.org](https://www.karateca.org/)
+### Remote Troubleshooting and Support
+Another very important consideration when developing a solution for a remote location such as a school in rural South Africa is how to fix the system in the event that something goes wrong. While it is important that people on-site receive sufficient training to be able to address most issues on-site, it is important to have a remote support plan in place to recover the system from unforseen issues. To facilitate this we propose a solution which uses a free and open-source VPN solution to securly connect to the computers local network from anywhere in the world. This makes it possible for an expert to offer remote support via SSH or remote desktop if neccesary. 
 
-## Installation
+---
 
-### Quick setup
+## Setup Guide
 
-To give you a running start I've put together some starter kits that you can download, fork or even deploy immediately:
+> #### What you will need:
+> - *n* x Raspberry Pi 4s (*n* will depend on your use case, we had 15)
+> - One micro SD card for initial setup of the Pis
+>   - Minimum 8GB
+> - A server computer (this can be a laptop, another Pi, a desktop computer or an actual server)
+>   - For any of these options, a decent storage capacity will be required (Minimum 64GB) to boot from and serve content to the client Pis
+>   - Depending on your use-case you may need a lot more storage (our server has a 480GB SSD which holds all the offline educational content)
+> - *n+2* ethernet cables
+> - A switch (with at least *n+2* ports)
+>   - This can be a gigabit switch (recommended) or a router configured to act as a switch
+> - 4G/LTE Router (use as DHCP server)
+> - *n* x accessories for each of the Pis
+>   - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies, headphones etc.
 
-- Vanilla Jekyll starter kit:
-  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/daviddarnes/alembic-kit)
-- Forestry starter kit:
-  [![Deploy to Forestry](https://assets.forestry.io/import-to-forestry.svg)](https://app.forestry.io/quick-start?repo=daviddarnes/alembic-forestry-kit&engine=jekyll)
-  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/daviddarnes/alembic-forestry-kit)
-- Netlify CMS starter kit:
-  [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/daviddarnes/alembic-netlifycms-kit&stack=cms)
+### Setting up the Client Pis
+- You will need to first boot the Pis from an SD card. In order to do this, we recommend you use [`Raspberry Pi Imager`](https://www.raspberrypi.org/software/) to write your chosen OS ([`Raspberry Pi OS`](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
 
-- GitHub Pages with remote theme kit - **[Download kit](https://github.com/daviddarnes/alembic-kit/archive/remote-theme.zip)**
-- Stackbit starter kit:
-  [![Create with Stackbit](https://assets.stackbit.com/badge/create-with-stackbit.svg)](https://app.stackbit.com/create?theme=https://github.com/daviddarnes/alembic-stackbit-kit)
+- Then repeat the following for each of the Raspberry Pi 4s that are going to be used as client devices:
+  - Insert the SD card into the Pi and connect the power supply
+  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting
+  - Once booted, go to the terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line: 
+  
+    `echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt`
+  
+    This adds "*program_usb_boot_mode=1*" to the end of the *config.txt* file. Now the Pi should be able to boot from a network.
 
-### As a Jekyll theme
+  - Reboot the Raspberry Pi with `sudo reboot`
+  - Once it has rebooted, check that the OTP has been programmed by running the following command in the terminal:
 
-1. Add `gem "alembic-jekyll-theme"` to your `Gemfile` to add the theme as a dependancy
-2. Run the command `bundle install` in the root of project to install the theme and its dependancies
-3. Add `theme: alembic-jekyll-theme` to your `_config.yml` file to set the site theme
-4. Run `bundle exec jekyll serve` to build and serve your site
-5. Done! Use the [configuration](#configuration) documentation and the example [`_config.yml`](https://github.com/daviddarnes/alembic/blob/master/_config.yml) file to set things like the navigation, contact form and social sharing buttons
+    `vcgencmd otp_dump | grep 17:`
 
-### As a GitHub Pages remote theme
+    If the output is  `0x3020000a`, then you have been successful.
 
-1. Add `gem "jekyll-remote-theme"` to your `Gemfile` to add the theme as a dependancy
-2. Run the command `bundle install` in the root of project to install the jekyll remote theme gem as a dependancy
-3. Add `jekyll-remote-theme` to the list of `plugins` in your `_config.yml` file
-4. Add `remote_theme: daviddarnes/alembic@main` to your `_config.yml` file to set the site theme
-5. Run `bundle exec jekyll serve` to build and serve your site
-6. Done! Use the [configuration](#configuration) documentation and the example [`_config.yml`](https://github.com/daviddarnes/alembic/blob/master/_config.yml) file to set things like the navigation, contact form and social sharing buttons
+   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
+    - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
 
-### As a Boilerplate / Fork
 
-_(deprecated, not recommended)_
+### Physical Device Setup
+The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected using ethernet cables, as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (\*why not?)
 
-1. [Fork the repo](https://github.com/daviddarnes/alembic#fork-destination-box)
-2. Replace the `Gemfile` with one stating all the gems used in your project
-3. Delete the following unnecessary files/folders: `.github`, `LICENSE`, `screenshot.png`, `CNAME` and `alembic-jekyll-theme.gemspec`
-4. Run the command `bundle install` in the root of project to install the jekyll remote theme gem as a dependancy
-5. Run `bundle exec jekyll serve` to build and serve your site
-6. Done! Use the [configuration](#configuration) documentation and the example [`_config.yml`](https://github.com/daviddarnes/alembic/blob/master/_config.yml) file to set things like the navigation, contact form and social sharing buttons
+![WiringDiagram](WiringDiagramV2.png)
 
-## Customising
 
-When using Alembic as a theme means you can take advantage of the file overriding method. This allows you to overwrite any file in this theme with your own custom file, by matching the file name and path. The most common example of this would be if you want to add your own styles or change the core style settings.
+### Configuring the 4G Router
+**\*TODO**
 
-To add your own styles copy the [`styles.scss`](https://github.com/daviddarnes/alembic/blob/master/assets/styles.scss) into your own project with the same file path (`assets/styles.scss`). From there you can add your own styles, you can even optionally ignore the theme styles by removing the `@import "alembic";` line.
+### Setting up the Server
+We have used a relively beefy desktop computer running [`Pop!\_OS`](https://pop.system76.com/) (other Linux distributions should/could work). **maybe mention how we had a bit of trouble with the other dirtributions we tried?**
 
-If you're looking to set your own colours and fonts you can overwrite them by matching the variable names from the [`_settings.scss`](https://github.com/daviddarnes/alembic/blob/master/_sass/_settings.scss) file in your own `styles.scss`, make sure to state them before the `@import "alembic";` line so they take effect. The settings are a mixture of custom variables and settings from [Sassline](https://medium.com/@jakegiltsoff/sassline-v2-0-e424b2881e7e) - follow the link to find out how to configure the typographic settings.
+Once you have your server PC up and running, the first step is to install `piserver`. Follow the instructions on [`piserver's GitHub page`](https://github.com/raspberrypi/piserver). You might need to run `sudo apt update` and `sudo apt upgrade` first.
 
-## Configuration
+\* **TODO:** More info on getting client OS's onto piserver?
 
-There are a number of optional settings for you to configure. Use the example [`_config.yml`](https://github.com/daviddarnes/alembic/blob/master/_config.yml) file in the repo and use the documentation below to configure your site:
+### Booting Up!
+Now that the Raspberry Pis and Server are set up, and all the devices are connected, the Pis can be booted over the network. 
+1. In the server's terminal, run `sudo piserver` to open *piserver*
+2. Turn on the Pis (plug in their power supplies). They will first try to load an operating system from storage; but because there are no SD cards, they will revert to attempting to fetch an OS from the local network (they continue trying as long as they are left on). You should see the following 'waiting screen': 
+ 
+\* **TODO:** insert screenshot of waiting screen
 
-### Gem dependency settings
+3. In the `piserver` GUI, click on the `Clients` tab on the left, then click `Add` at the top. 
 
-`twitter`, `author` and `social` values will need to be changed to the projects' social information or removed. Look for the `Gem settings` comment within the `/_config.yml` file. These values are for the [jekyll-seo-tag](https://github.com/jekyll/jekyll-seo-tag) - follow the link to find out more.
+![Add Client to piserver (Step 1.)](piserver1.png)
 
-### Site settings
+4. You will be taken to the “Add Clients" screen. If the Pi/Pis have been connected to the network and turned on correctly, then the MAC address should appear here (might take ~30seconds for them to first start up). Add a description (the number or name you would like to assign to the Pi). Choose the OS you wish to serve to the client Pi/s. And then select “OK”
 
-You'll need to change the `description`, `title` and `url` to match with the project. You'll also need to replace the logos, default social and default offline images in the `/assets/` directory with your own graphics. Setting the site language can be done with `lang`, the theme will default to `en-US`. The `email` needs to be changed to the email you want to receive contact form enquires with. The `disqus` value can be changed to your project username on [Disqus](https://disqus.com), remove this from the `/_config.yml` file if you don't want comments enabled. Look for the `Site settings` comment within the `/_config.yml` file. The `repo` setting is optional, for now, and can be removed entirely, if you wish.
+![Add Client to piserver (Step 2.)](piserver2.png)
 
-Google Analytics can be enabled via the site configuration too. Add your tracking ID to the `/_config.yml` file in the following method: `google_analytics: 'UA-XXXXXXXX-1'`. By default all IPs of site visitors are anonymous to maintain a level of privacy for the audience. If you wish to turn this off set the `google_analytics_anonymize_ip` key to `false`.
+5. The Pi/s should boot up and show you the login screen. Now we need to add users to login with. Back in the piserver GUI, navigate to the "Users" tab and click "Add".
 
-Date format can be customised in the `/_config.yml` with the option `date_format` (please refer to Liquid date filters documentation for learning about formatting possibilities). Only placeholder formatting is supported, do not try to use ordinal dates introduced in Jekyll 3.8.
+![Add Client to piserver (Step 1.)](piserver3.png)
 
-The `short_name` option within `/_config.yml` is to add a custom name to the site's web application counterpart. When the website is added to a device this name will appear alonside the app icon. The short name will default to the site title if this isn't set.
+6. Fill out up to five users' details (you can add more later). Click "OK". Now a user should be able to login to any of the Pis and create their own environment with personal settings, folders, wallpapers, etc. and access it all no matter which Pi you use next time. Easy as that!
 
-### Site performance settings
+![Add Client to piserver (Step 1.)](piserver4.png)
 
-Alembic comes with a couple of options to enhance the speed and overall performance of the site you build upon it.
-
-By default the built in Service Worker is enabled, and will work on a 'network first' method. Meaning if there's no internet connection the content the Service Worker has cached will be used until the connection comes back. It will always look for a live version of the code first. To disable the Service Worker add an option called `service_worker` with a value of `false` in the `/_config.yml` file.
-
-Another option to speed up Alembic is to enable inline CSS, which is off by default. You can enable this by setting `css_inline: true` inside your `/_config.yml` file. By switching to inline styles you bypass the use `/assets/styles.scss`, any custom styles will need to be added in `/_includes/site-styles.html` or in a new custom file.
-
-Please note that these options aren't a "silver bullet" for making your site faster, make sure to audit and debug your site to get the best performance for your situation.
-
-### Site navigation
-
-There are a total of 4 different navigation types:
-
-- `navigation_header`: The links shown in the header (it is also used on the 404 page)
-- `navigation_footer`: The links shown in the footer
-- `social_links`: The social icon links that are shown in the sidebar
-- `sharing_links`: The social sharing buttons that are shown at the bottom of blog posts
-
-All navigations can be edited using the `_config.yml` file. To see example usage either look for the `Site navigation` comment within the `/_config.yml` file or see [the nav-share.html include](#nav-sharehtml).
-
-If there are no items for the `navigation_header` or `navigation_footer`, they will fallback to a list of pages within the site. The `social_navigation` properties should either be one that is already in the list (so `Twitter` or `Facebook`) or a regular `link`, this is so an icon can be set for the link.
-
-### Custom fonts
-
-Alembic comes with custom fonts served from Google fonts. By default it requests Merriweather but this can be any font from any provider assuming it supports requesting fonts in the same manner and does not require javascript.
-
-This can be configured under the `custom_fonts` key.
-
-- `urls`: The urls supplied to you from your font provider (eg https://fonts.googleapis.com/css2?family=Merriweather). For best performance try to use as few urls as possible
-- `preconnect`: (optional) If your font provider serves the font files from another domain it can be useful to make a connection to that domain in advance. For example google load the font files from fonts.gstatic.com. This can be omitted if not required
-
-If you want to customise this further you can find the include for custom fonts in `_includes/site-custom-fonts.html`.
-
-## Using includes
-
-There are 2 main types of includes: ones designed for the site and ones that are designed as shortcodes. Here are a list of the shortcode includes:
-
-### `button.html`
-A button that can link to a page of any kind.
-
-Example usage: `{% include button.html text="I'm a button" link="https://david.darn.es" %}`
-
-Available options:
-- `text`: The text of the button _required_
-- `link`: The link that the button goes to _required_
-- `icon`: The icon that is added to the end of the button text
-- `color`: The colour of the button
-
-### `figure.html`
-An image with optional caption.
-
-Example usage: `{% include figure.html image="/uploads/feature-image.jpg" caption="Check out my photo" %}`
-
-Available options:
-- `image`: The image shown _required_
-- `caption`: A caption to explain the image
-- `position`: The position of the image; `left`, `right` or `center`
-- `width` & `height`: Optional width and height attributes of the containing image
-
-### `icon.html`
-An icon.
-
-Example usage: `{% include icon.html id="twitter" %}`
-
-Available options:
-- `id`: The reference for the icon _required_
-- `title`: The accessible label for the icon
-- `color`: The desired colour of the icon
-- `width` & `height`: Width and height attributes for the icon, default is `16`
-
-### `nav-share.html`
-A set of buttons that share the current page to various social networks, which is controlled within the `_config.yml` file under the `sharing_links` keyword.
-
-Example usage: `{% include nav-share.html %}`
-
-Available options:
-``` yml
-Twitter: "#1DA1F2"
-facebook: "#3B5998"
-Pinterest: "#BD081C"
-LinkedIn: "#0077B5"
-tumblr: "#36465D"
-Reddit: "#FF4500"
-HackerNews: "#ff6600"
-DesignerNews: "#2D72D9"
-Email: true
-```
-
-_The first item is the name of the network (must be one of the ones stated above) and the second is the colour of the button. To remove a button remove the line of the same name._
-
-### `video.html`
-A YouTube video.
-
-Example usage: `{% include video.html id="zrkcGL5H3MU" %}`
-
-Available options:
-- `id`: The YouTube ID for the video _required_
-
-### `map.html`
-A Google map. _See Google [My Maps](https://www.google.com/mymaps)_
-
-Example usage: `{% include map.html id="1UT-2Z-Vg_MG_TrS5X2p8SthsJhc" %}`
-
-Available options:
-- `id`: The map ID for the video _required_
-
-### `site-form.html`
-Adds a contact form to the page. This can be used with [Formspree](https://formspree.io/) or [Netlify Forms](https://www.netlify.com/docs/form-handling/) depending on your setup.
-
-Example usage: `{% include site-form.html %}`
-
-Available options:
-- `netlify_form=true`: Set whether you would like to use Netlify Forms, otherwise the form will default to Formspree
-- `name`: Give the form a name, by default the form is called "Contact". The name will be reflected when form submissions come through in Netlify or in your email client. The name is also used in the label and input elements for accessibility
-
-
-Use the `email` option in the `/_config.yml` to change to the desired email.
-
-### `site-search.html`
-Adds a search form to the page.
-
-Example usage: `{% include site-search.html %}`
-
-This include has no options. This include will add a block of javascript to the page and javascript reference in order for the search field to work correctly.
-
-### `site-before-start.html` & `site-before-end.html`
-Optional html includes for adding scripts, css, js or any embed code you wish to add to every page without the need to overwrite the entire `default.html` template.
-
-**Example usage:** These are different to other includes as they are designed to be overwritten. If you create a `site-before-start.html` file in the `_includes/` the contents of the file will be included immediately before the closing `</head>` tag. If you create a `site-before-end.html` file the contents of the file will be included immediately before the closing `</body>` tag.
-
-## Page layouts
-
-As well as `page`, `post`, `blog`, there are a few alternative layouts that can be used on pages:
-
-- `categories`: Shows all posts grouped by category, with an index of categories in a left hand sidebar
-- `search`: Adds a search field to the page as well as a simplified version of the sidebar to allow more focus on the search results
-
-## Page and Post options
-
-There are some more specific options you can apply when creating a page or a post:
-
-- `aside: true`: Adds a sidebar to the page or post, this is false by default and will not appear
-- `comments: false`: Turns off comments for that post
-- `feature_image: "/uploads/feature-image.jpg"`: Adds a full width feature image at the top of the page
-- `feature_text: "Example text"`: Adds text to the top of the page as a full width feature with solid colour; supports markdown. This can be used in conjunction with the `feature_image` option to create a feature image with text over it
-- `indexing: false`: Adds a `noindex` meta element to the `<head>` to stop crawler bots from indexing the page, used on the 404 page
-
-> **Note:** The Post List Page options are actually in the collection data within the `_config.yml` file.
-
-## Credits
-
-- Thanks to [Simple Icons](https://simpleicons.org/) for providing the brand icons, by [Dan Leech](https://twitter.com/bathtype)
-- Thanks to [Sassline](https://sassline.com/) for the typographic basis, by [Jake Giltsoff](https://twitter.com/jakegiltsoff)
-- Thanks to [Flexbox mixin](https://github.com/mastastealth/sass-flex-mixin) by [Brian Franco](https://twitter.com/brianfranco)
-- Thanks to [Normalize](https://necolas.github.io/normalize.css/) by [Nicolas Gallagher](https://twitter.com/necolas) and [Jonathan Neal](https://twitter.com/jon_neal).
-- Thanks to [pygments-css](http://richleland.github.io/pygments-css/) for the autumn syntax highlighting, by [Rich Leland](https://twitter.com/richleland)
+### The Daily User Guide
+For more info on creating shared folders, editing users, deleting users, please see our [`Technical Guide`](https://docs.google.com/document/d/1NRzISrL2ashDNrijnIuj6bVMliiEPxsDaAkP4UzLzbY/edit?usp=sharing). :)
+
+### General Trouble Shooting
+|                                  Bug                                  |                                                                                                                                                                                                                                                                                                                                                                                                         Solution                                                                                                                                                                                                                                                                                                                                                                                                        |
+|:---------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Pi not network booting                                                | - Determine whether there is a device acting as the DHCP server. If there is no DHCP server (an example of this is if you do not have a router connected to the Pis -- the router generally acts as the DHCP server), you will need to configure piserver to act as the DHCP server. Piserver has to be configured to assign IP addresses to the clients when they boot. Go to settings on the piserver application, and select "Act as a standalone DHCP server". <br>- Plug in the ethernet cable to Pi before supplying power for boot. <br>- Check whether new IP addresses have been allocated to the server and/or Pis. New IPs might have been assigned when the server restarted if the server wasn’t connected to the router. <br>- Take out keyboard and/or mouse (seemed to only be a mac keyboard though) when booting. |
+| All the Pis are frozen (only mouse moves)                             | The local network is disconnected. <br>- Perhaps the server is off? When the server is turned back on, the Pis should continue where you left off <br>- Connection to server is broken. Check the light at the switch for whether it is on for the server. If it is not, check whether the server’s ethernet cable is connected correctly to the server and/or switch. If that doesn’t work, the ethernet cable might need to be replaced. When the connection to the server is restored, the Pis should continue where you left off.                                                                                                                                                                                                                                                                                           |
+| Only one Pi is frozen (only mouse moves)                              | The Pi could be disconnected from the local network.  <br>- Check the LED at the switch to see if it is communicating with the Pi. If it is not, check if the ethernet cable for that Pi is connected correctly to the Pi and/or the switch correctly. If they are connected correctly and it still doesn’t resolve the problem, the ethernet cable might need to be replaced.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Shared folder vanishes or file does not open on a client Raspberry Pi | - Restart the Pi: Unplug the LAN cable and then the Pi power cable. Plug them in again and login to the same account, everything should be accessible and back to normal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Application opening too slowly                                        | - Simply “reboot” the Pi.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Pi will not boot (but is has booted previously)                       | - Check if the router is disconnected (look at the router’s LED on the switch). Connect the router. Plug the power supplies into the Pis again.  <br>- The Pi was “shutdown”. You will need to either remove the power supply and put it back in, or turn the power off and on at the wall.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Pi is working fine, but internet is not working                       | - The router might be disconnected from the network: Check the router’s light on the switch. If it is off, check the ethernet cable’s connection at the router and/or switch. <br>- Router out of data: Load data onto the sim.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Pi3B won't network boot                                               | - Pi 3Bs don’t network boot as easily as 3B+s. This is because their boot firmware is out of date. One can work around this by loading the up-to-date boot file onto a blank SD card and inserting it into the Pi 3B. Note the SD card should have nothing on it except the boot file. See this github issue to download the boot file and get more info on the [GitHub issue](https://github.com/raspberrypi/piserver/issues/40).                                                                                                                                                                                                                                                                                                                                                                                      |
