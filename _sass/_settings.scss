@@ -7,7 +7,7 @@ $accentColour: #05bf85 !default;
 // Text colours
 $headingColour: #0000F2 !default;
 $bodyColour: #0000F2 !default;
-$linkColour: #F78F8B !default;
+$linkColour: #0000F2 !default;
 $hoverColour: #F78F8B !default;
 $focusColour: #fa407a !default;
 $captionColour: #a8adac !default;
@@ -23,14 +23,14 @@ $bodytype: (
 ) !default;
 
 $headingtype: (
-  font-family: '"Merriweather", serif',
+  font-family: "Roboto Mono, monospace",
   regular: 400,
   bold: 700,
   cap-height: 0.75
 ) !default;
 
 $monospacetype: (
-  font-family: "Menlo, monospace",
+  font-family: "Roboto Mono, monospace",
   regular: 400,
   cap-height: 0.68
 ) !default;
