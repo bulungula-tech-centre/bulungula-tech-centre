@@ -4,6 +4,13 @@
     <section class="section  section--related-posts">
       {% include post-related.html %}
     </section>
+  
+  {% elsif page.layout == "guide" %}
+    <section class="section  section--category-index">
+      <h3>TOC</h3>
+      {% include guide-toc.html %}
+  </section>
+
 
   {% elsif page.layout == "page" or page.layout == "home" or page.layout == "blog" %}
     <section class="section  section--description">
