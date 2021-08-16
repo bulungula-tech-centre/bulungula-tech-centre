@@ -201,6 +201,12 @@ body {
       color: $captionColour;
     }
   }
+  &--bi {
+    a {
+      color: $captionColour;
+      font-size: 70%;
+    }
+  }
 }
 
 
