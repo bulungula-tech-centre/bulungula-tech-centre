@@ -1,5 +1,5 @@
 ---
-title: Bulungula Tech Center
+title: Bulungula Tech Centre
 feature_text: |
 feature_image: "/assets/images/students_on_computers.jpeg"
 excerpt: "Tech center is a starting point for [Jekyll](https://jekyllrb.com/) projects. Rather than starting from scratch, this boilerplate is designed to get the ball rolling immediately. Install it, configure it, tweak it, push it."
