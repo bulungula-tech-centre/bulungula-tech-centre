@@ -1,7 +1,7 @@
 ---
 title: Setup Guide
 feature_text: |
-feature_image: "/assets/images/setup/bulungula-2021-434.jpg"
+feature_image: "/assets/images/setup_guide/landscape.jpg"
 excerpt: "An overview of the technical setup"
 layout: guide
 aside: True
