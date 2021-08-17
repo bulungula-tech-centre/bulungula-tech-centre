@@ -1,5 +1,5 @@
 # Bulungula Tech Centre
-This repository contains the instructions to replicate the low-cost, low-power computer lab we built at the Bulungula College, a school in rural South Africa. Our goal was to use free and open-source software to make this solution as accessible as possible. Please see our [`GitHub Pages Site`](https://jcformanek.github.io/bulungula-tech-center/) for more about the project's motivation and context.
+This repository contains the instructions to replicate the low-cost, low-power computer lab we built at the Bulungula College, a school in rural South Africa. Our goal was to use free and open-source software to make this solution as accessible as possible. Please see our [`GitHub Pages Site`](https://bulungula-tech-centre.github.io/) for more about the project's motivation and context.
 
 ## Overview
 
