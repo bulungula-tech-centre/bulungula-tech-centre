@@ -462,6 +462,13 @@ pre code {
   }
 }
 
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+  margin: 0;
+}
+
 /* Dropdown button */
 .dropdown .dropbtn {
   font-size: inherit;
