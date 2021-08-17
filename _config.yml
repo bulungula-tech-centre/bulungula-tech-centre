@@ -126,8 +126,8 @@ navigation_header:
   url: /blog/
 - title: Our Story
   url: /story/
-- title: Create your own
-  url: /replicate/
+- title: Conact us
+  url: /contact/
 
 navigation_footer:
 - title: An initiative of the Bulungula Incubator
