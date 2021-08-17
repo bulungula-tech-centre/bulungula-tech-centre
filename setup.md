@@ -43,9 +43,9 @@ aside: True
     vcgencmd otp_dump | grep 17:
     ```
 
-    If the output is  `0x3020000a`{:.shell}, then you have been successful.
+    If the output is  `0x3020000a`, then you have been successful.
 
-   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode`{:.bash} line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
+   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
     - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
 
 
