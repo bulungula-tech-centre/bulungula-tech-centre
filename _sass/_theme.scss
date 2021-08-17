@@ -462,9 +462,12 @@ pre code {
   }
 }
 
+.dropdown {
+  display: inline-block;
+}
 
 /* Dropdown button */
-.dropbtn {
+.dropdown .dropbtn {
   font-size: inherit;
   border: none;
   outline: none;
@@ -477,7 +480,7 @@ pre code {
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropbtn:hover .dropbtn {
+.navbar a:hover, .dropdown:hover .dropbtn {
   background-color: #F78F8B;
 }
 
@@ -507,6 +510,6 @@ pre code {
 }
 
 /* Show the dropdown menu on hover */
-.dropbtn:hover .dropdown-content {
+.dropdown:hover .dropdown-content {
   display: block;
 }
