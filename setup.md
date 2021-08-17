@@ -30,18 +30,22 @@ aside: True
   - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting
   - Once booted, go to the terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line: 
   
-    `echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt`
+    ```shell
+    echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt
+    ```
   
     This adds "*program_usb_boot_mode=1*" to the end of the *config.txt* file. Now the Pi should be able to boot from a network.
 
   - Reboot the Raspberry Pi with `sudo reboot`
   - Once it has rebooted, check that the OTP has been programmed by running the following command in the terminal:
 
-    `vcgencmd otp_dump | grep 17:`
+    ```shell
+    vcgencmd otp_dump | grep 17:
+    ```
 
-    If the output is  `0x3020000a`, then you have been successful.
+    If the output is  `0x3020000a`{:.shell}, then you have been successful.
 
-   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
+   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode`{:.bash} line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
     - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
 
 
