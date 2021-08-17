@@ -124,6 +124,10 @@ navigation_header:
   url: /finances/
 - title: Blog
   url: /blog/
+- title: Our Story
+  url: /story/
+- title: Create your own
+  url: /replicate/
 
 navigation_footer:
 - title: An initiative of the Bulungula Incubator
