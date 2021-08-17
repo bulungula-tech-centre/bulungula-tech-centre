@@ -10,20 +10,7 @@
       {% endif %}
 
       <li class="item  item--nav{% if item.url == page.url %}  item--current{% endif %}">
-        {% if item.title == "Setup Guide" %}
-            <div class="dropdown">
-            <button class="dropbtn">Dropdown
-                <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
-            </div>
-            </div>
-        {% else %}
             <a href="{{ url }}">{{ item.title }}</a>
-        {% endif %}
       </li>
     {% endfor %}
   </ul>
