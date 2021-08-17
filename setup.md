@@ -1,7 +1,7 @@
 ---
 title: Setup Guide
 feature_text: |
-feature_image: "https://picsum.photos/2560/600?image=873"
+feature_image: "/assets/images/setup/bulungula-2021-434.jpg"
 excerpt: "An overview of the technical setup"
 layout: guide
 aside: True

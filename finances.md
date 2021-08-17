@@ -1,7 +1,7 @@
 ---
 title: Finances
 feature_text: |
-feature_image: "https://picsum.photos/2560/600?image=873"
+feature_image: "/assets/images/setup/bulungula-2021-434 (1).jpg"
 excerpt: "Overview of the financial requirements of the project"
 aside: true
 ---
