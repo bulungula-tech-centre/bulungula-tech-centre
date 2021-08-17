@@ -1,9 +1,8 @@
 ---
 title: Setup Guide
 feature_text: |
-  A demo of Markdown and HTML includes
 feature_image: "https://picsum.photos/2560/600?image=873"
-excerpt: "A demo of Markdown and HTML includes"
+excerpt: "An overview of the technical setup"
 layout: guide
 aside: True
 ---
