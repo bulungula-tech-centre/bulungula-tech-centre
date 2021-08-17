@@ -469,6 +469,7 @@ pre code {
 /* Dropdown button */
 .dropdown .dropbtn {
   font-size: inherit;
+  color: inherit;
   border: none;
   outline: none;
   padding: 14px 16px;
@@ -479,8 +480,9 @@ pre code {
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: #F78F8B;
+.dropdown:hover .dropbtn {
+//   background-color: #F78F8B;
+  color: $linkColour;
 }
 
 /* Dropdown content (hidden by default) */
