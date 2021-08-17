@@ -63,7 +63,7 @@ Another very important consideration when developing a solution for a remote loc
 ### Physical Device Setup
 The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected using ethernet cables, as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (\*why not?)
 
-![WiringDiagram](WiringDiagramV2.png)
+![WiringDiagram](Figures/WiringDiagramV2.png)
 
 
 ### Configuring the 4G Router
@@ -85,19 +85,19 @@ Now that the Raspberry Pis and Server are set up, and all the devices are connec
 
 3. In the `piserver` GUI, click on the `Clients` tab on the left, then click `Add` at the top. 
 
-![Add Client to piserver (Step 1.)](piserver1.png)
+![Add Client to piserver (Step 1.)](Figures/piserver1.png)
 
 4. You will be taken to the “Add Clients" screen. If the Pi/Pis have been connected to the network and turned on correctly, then the MAC address should appear here (might take ~30seconds for them to first start up). Add a description (the number or name you would like to assign to the Pi). Choose the OS you wish to serve to the client Pi/s. And then select “OK”
 
-![Add Client to piserver (Step 2.)](piserver2.png)
+![Add Client to piserver (Step 2.)](Figures/piserver2.png)
 
 5. The Pi/s should boot up and show you the login screen. Now we need to add users to login with. Back in the piserver GUI, navigate to the "Users" tab and click "Add".
 
-![Add Client to piserver (Step 1.)](piserver3.png)
+![Add Client to piserver (Step 1.)](Figures/piserver3.png)
 
 6. Fill out up to five users' details (you can add more later). Click "OK". Now a user should be able to login to any of the Pis and create their own environment with personal settings, folders, wallpapers, etc. and access it all no matter which Pi you use next time. Easy as that!
 
-![Add Client to piserver (Step 1.)](piserver4.png)
+![Add Client to piserver (Step 1.)](Figures/piserver4.png)
 
 ### The Daily User Guide
 For more info on creating shared folders, editing users, deleting users, please see our [`Technical Guide`](https://docs.google.com/document/d/1NRzISrL2ashDNrijnIuj6bVMliiEPxsDaAkP4UzLzbY/edit?usp=sharing). :)
