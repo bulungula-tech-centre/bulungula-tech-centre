@@ -48,7 +48,7 @@ aside: True
 ### Physical Device Setup
 The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (why not?)
 
-![WiringDiagram](WiringDiagram.png)
+![WiringDiagram](/assets/images/setup_guide/WiringDiagramV2.png)
 
 ### Setting up the Server
 We have used a relively beefy desktop computer running [Pop!\_OS](https://pop.system76.com/) (other Linux distributions should/could work).
