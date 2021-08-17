@@ -481,8 +481,8 @@ pre code {
 
 /* Add a red background color to navbar links on hover */
 .dropdown:hover .dropbtn {
-//   background-color: #F78F8B;
-  color: $linkColour;
+  background-color: inherit;
+  color: $hoverColour;
 }
 
 /* Dropdown content (hidden by default) */
