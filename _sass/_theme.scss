@@ -105,6 +105,8 @@ body {
   }
   .small {
     padding-top: 0;
+    color: $white;
+    font-weight: 600;
   }
 }
 
@@ -209,8 +211,9 @@ body {
   }
   &--bi {
     a {
-      color: $captionColour;
+      color: $white;
       font-size: 70%;
+      font-weight: 400;
     }
   }
 }

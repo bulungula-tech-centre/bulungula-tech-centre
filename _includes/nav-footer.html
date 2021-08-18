@@ -3,18 +3,18 @@
   <ul class="list list--nav">
     {% for item in site.navigation_footer %}
 
-      {% if item.url contains '://' %}
-        {% assign url = item.url %}
-      {% else %}
-        {% assign url = item.url | relative_url %}
-      {% endif %}
+    {% if item.url contains '://' %}
+    {% assign url = item.url %}
+    {% else %}
+    {% assign url = item.url | relative_url %}
+    {% endif %}
 
-      <li class="item  item--bi{% if item.url == page.url %}  item--current{% endif %}">
-        <a href="{{ url }}">{{ item.title }}</a>
-      </li>
+    <li class="item  item--bi{% if item.url == page.url %}  item--current{% endif %}">
+      A project of the <a style="font-weight: 600;" href="{{ url }}">{{ item.title }}</a>
+    </li>
     {% endfor %}
   </ul>
 </nav>
 {% else %}
-  {% include nav-default.html %}
+{% include nav-default.html %}
 {% endif %}
