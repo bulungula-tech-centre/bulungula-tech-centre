@@ -58,6 +58,12 @@ body {
   }
 }
 
+@media screen and (max-width: 800px) {
+  .feature {   
+    max-height: 25vh;
+  }
+}
+
 .logo {
   display: inline-block;
   line-height: 0;
