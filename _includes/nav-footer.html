@@ -10,7 +10,7 @@
     {% endif %}
 
     <li class="item  item--bi{% if item.url == page.url %}  item--current{% endif %}">
-      A project of the <a style="font-weight: 600;" href="{{ url }}">{{ item.title }}</a>
+      A project of the <a href="{{ url }}">{{ item.title }}</a>
     </li>
     {% endfor %}
   </ul>

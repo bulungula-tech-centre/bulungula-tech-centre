@@ -210,10 +210,11 @@ body {
     }
   }
   &--bi {
+    color: $white;
+    font-size: 70%;
+    font-weight: 400;
     a {
-      color: $white;
-      font-size: 70%;
-      font-weight: 400;
+      font-weight: 600;
     }
   }
 }
