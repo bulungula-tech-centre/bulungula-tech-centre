@@ -1,7 +1,7 @@
 ---
 title: Setup Guide
 feature_text: |
-feature_image: "/assets/images/setup_guide/landscape.jpg"
+feature_image: "/assets/images/setup_guide/landscape_with_sea.png"
 excerpt: "An overview of the technical setup"
 layout: guide
 aside: True
