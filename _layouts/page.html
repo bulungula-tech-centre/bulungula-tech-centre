@@ -5,10 +5,11 @@ layout: default
 {% include site-header.html %}
 
 <main class="main  container">
-  
+
   {% if page.aside == true %}{% include site-aside.html %}{% endif %}
 
-  <article class="article  article--page  content  typeset">
+  <article
+    class="article  article--page  content  typeset{% if page.title == 'Bulungula Tech Centre' %} fade_in{endif}">
 
     <h1>{{ page.title }}</h1>
 
