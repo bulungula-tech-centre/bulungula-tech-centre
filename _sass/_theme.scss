@@ -485,24 +485,24 @@ pre code {
   }
 }
 
-// .fade_in {
-//   animation: fadeInAnimation ease 10s;
-//   animation-iteration-count: 1;
-//   animation-fill-mode: forwards;
-// }
+.fade_in {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
 
 /* Animation */
-.anim-typewriter{
-  animation: typewriter 4s steps(21) 1s 1 normal both,
-             blinkTextCursor 500ms steps(21) infinite normal;
-  overflow: hidden;
-  white-space: nowrap;
-}
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 100%;}
-}
-@keyframes blinkTextCursor{
-  from{border-right-color: $linkColour;}
-  to{border-right-color: transparent;}
-}
+// .anim-typewriter{
+//   animation: typewriter 4s steps(21) 1s 1 normal both,
+//              blinkTextCursor 500ms steps(21) infinite normal;
+//   overflow: hidden;
+//   white-space: nowrap;
+// }
+// @keyframes typewriter{
+//   from{width: 0;}
+//   to{width: auto;}
+// }
+// @keyframes blinkTextCursor{
+//   from{border-right-color: $linkColour;}
+//   to{border-right-color: transparent;}
+// }
