@@ -11,7 +11,8 @@ layout: default
   <article
     class="article  article--page  content  typeset{% if page.title == 'Bulungula Tech Centre' %} fade_in{% endif %}">
 
-    <h1>{{ page.title }}<span class="blinking-cursor">|</span></h1>
+    <h1>{{ page.title }}{% if page.title == 'Bulungula Tech Centre' %}<span class="blinking-cursor">|</span>{% endif %}
+    </h1>
 
     {{ content }}
 
