@@ -491,18 +491,59 @@ pre code {
   animation-fill-mode: forwards;
 }
 
-/* Animation */
-// .anim-typewriter{
-//   animation: typewriter 4s steps(21) 1s 1 normal both,
-//              blinkTextCursor 500ms steps(21) infinite normal;
-//   overflow: hidden;
-//   white-space: nowrap;
-// }
-// @keyframes typewriter{
-//   from{width: 0;}
-//   to{width: auto;}
-// }
-// @keyframes blinkTextCursor{
-//   from{border-right-color: $linkColour;}
-//   to{border-right-color: transparent;}
-// }
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 30px;
+  color: #2E3D48;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-ms-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
+
+@-o-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: black;
+  }
+}
