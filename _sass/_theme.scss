@@ -474,11 +474,6 @@ pre code {
     white-space: pre;
     overflow-x: scroll;
   }
-  .fade_in {
-    animation: fadeInAnimation ease 3s;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-  }
 }
 
 @keyframes fadeInAnimation {
@@ -490,3 +485,8 @@ pre code {
   }
 }
 
+.fade_in {
+  animation: fadeInAnimation ease 10s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
