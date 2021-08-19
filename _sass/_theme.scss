@@ -494,8 +494,8 @@ pre code {
 
 .blinking-cursor {
   font-weight: 100;
-  font-size: 30px;
-  color: #2E3D48;
+  font-size: inherit;
+  color: $linkColour;
   -webkit-animation: 1s blink step-end infinite;
   -moz-animation: 1s blink step-end infinite;
   -ms-animation: 1s blink step-end infinite;
@@ -508,7 +508,7 @@ pre code {
     color: transparent;
   }
   50% {
-    color: black;
+    color: $linkColour;
   }
 }
 
@@ -517,7 +517,7 @@ pre code {
     color: transparent;
   }
   50% {
-    color: black;
+    color: $linkColour;
   }
 }
 
@@ -526,7 +526,7 @@ pre code {
     color: transparent;
   }
   50% {
-    color: black;
+    color: $linkColour;
   }
 }
 
@@ -535,7 +535,7 @@ pre code {
     color: transparent;
   }
   50% {
-    color: black;
+    color: $linkColour;
   }
 }
 
