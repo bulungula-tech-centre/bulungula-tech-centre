@@ -36,6 +36,8 @@ aside: True
   - Reboot the Raspberry Pi with `sudo reboot`.
   - Your Pi 4 should atempt to network boot from now onwards whenever an SD card is not in the Pi. We can now move on to setting up the ethernet network to connect     the Pis to the server. 
 
+If you power up your Pi 4 now without an SD card in it, it should get stuck on a black debug screen with the Raspberry Pi logo in the top right hand corner. This screen usually displays some useful information which you can use to diagnose what is going wrong incase your Pi won't boot. But for now, we expect our Pi to get stuck here because we have not connected it to a server that can give it an OS.
+
 
 ### Setting up the local network
 The Pis, Server and Router have to be connected together via ethernet to form a local network. Use the ethernet cables to connect each of the Pis to the router. If you have more Pis then you have ethernet ports on your router then you will need to buy a network switch to expand the number of ports. If you use a switch, remember that you still need to connect the router to the switch because the router acts as the DHCP server (i.e. it assigns IP adresses to the devices on the network) and without a DHCP server the setup will not work. Finally, the server should also be connected to the network via ethernet. 
@@ -46,16 +48,22 @@ We provide a wiring diagram below.
 
 Once all the devices (Pis, server, switch and router) are connected together via ethernet you can try turning everything on. Remeber to remove the SD card from all the Pis. At this point the the Pis should just get stuck on the boot screen because they are atempting to network boot but we have not configured the server to provide the OS yet. Lets do that next.
 
-One other important thing to do at this stage is to configure your router to give the server a fixed (static) IP adress. This is important later on because the Pis need to know exactly which IP adress to go to to get the OS when they boot up. If the IP adress of the server changes then the Pis will fail to boot. You should google the model of your router and find instructions on how to set a static IP adress for a device. It is generally speaking not too tricky, you will need to login to your routers user interface and change a couple settings. 
+One other important thing to do at this stage is to configure things so that the server has a fixed (static) IP adress. This is important later on because the Pis need to know exactly which IP adress to go to to get the OS when they boot up. If the IP adress of the server changes then the Pis will fail to boot. There are two possible ways to achieve this:
+- You can either google the model of your router and find instructions on how to set a static IP adress for a device from the router. It is generally not too tricky, you will need to login to your routers user interface and change a couple settings. 
+- Alternativly, you can set a static IP from the server itself. Here are instructions on how to set a [static IP on Ubuntu](https://linuxconfig.org/how-to-configure-static-ip-address-on-ubuntu-18-10-cosmic-cuttlefish-linux). 
 
 ### Setting up the Server
-As mentioned before, you can use a laptop, desktop or even another Pi as the server. But the server will need a fair amount of storage since it will store the filesystem for all of the networked Pis. So we recomend using a laptop running Ubuntu 20.04. The server needs to be running linux because we will be using an open-source bit of software called Pi Server.
+As mentioned before, you can use a laptop, desktop or even another Pi as the server. But the server will need a fair amount of storage since it will store the filesystem for all of the networked Pis. So we recomend using a ully fledged PC (laptop/desktop) running Ubuntu 20.04. The server needs to be running linux because we will be using an open-source bit of software called Pi Server.
 
 Pi Server makes it as easy as plug-and-play to network boot Raspberry Pis. Head over to the Pi Server GitHub repo and follow their instructions on how to build and install Pi Server.
 
 [Pi Server's GitHub page](https://github.com/raspberrypi/piserver)
 
-Once you have Pi Server installed you can start it by typing `sudo piserver` into a terminal window. You should see the Pi Server GUI window pop up with a setup wizard. Follow the prompts on screen until you get to the section on `adding clients`. At this stage you should hopefully start seeing your client Pis apearing on the list (the MAC adresses of the Pis appear in the list). If nothing is apearing in the list then you should:
+Once you have Pi Server installed you can start it by typing `sudo piserver` into a terminal window. You should see the Pi Server GUI window pop up with a setup wizard. Follow the prompts on screen until you get to the section on `adding clients`. At this stage you should hopefully start seeing your client Pis apearing on the list (the MAC adresses of the Pis appear in the list).
+
+![Add Clients](/assets/images/setup_guide/piserver2.png)
+
+If nothing is apearing in the list then you should:
   - Ensure that the server, Pis, switch and router are all connected properly. A good troublshooting trick is to reboot everything (when in doubt reboot everything). I would suggest powering off the Pis, switch and router. Then turn everything back on but in the following order: First turn the router on and give it some time to reboot properly. Then turn the switch on. Finally, turn all of the Pis back on. Hopefully after 10-15 seconds the Pis will start apearing on the list now.
   - If the Pis are still not showing up, you may need to go back and check that you properly configured them for networking booting and that you didnt accidently leave a SD card in the Pi.
 
