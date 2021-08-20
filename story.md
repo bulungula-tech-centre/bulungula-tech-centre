@@ -10,7 +10,7 @@ The Bulungula Incubator is located in one of the most rural parts of the Mbhashe
 
 ![StoryImage1]()
 
-Around the world, effective use of technology at school is advancing education across the globe. However,  lack of electricity, high data prices and non-availability of electronic devices create considerable obstacles for young individuals in rural areas to achieve their full potential. In partnership with The Delta, as a pilot project for rural schools, we set up the Bulungula Tech Centre— a low-cost tech centre equipped with 16 computer stations.
+Around the world, effective use of technology at school is advancing education across the globe. However,  lack of electricity, high data prices and non-availability of electronic devices create considerable obstacles for young individuals in rural areas to achieve their full potential. In partnership with The Delta, as a pilot project for rural schools, we set up the Bulungula Tech Centre — a low-cost tech centre equipped with 16 computer stations.
 
 ![StoryImage2]()
 
