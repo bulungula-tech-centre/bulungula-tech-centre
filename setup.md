@@ -74,7 +74,7 @@ If you are going to use your Pis as a learning center in a school you might like
 
 Once you have Kolibri setup on the server, you should be able to reach Kolibri from any of the Pis by typing  `xxx.xxxx.xxx.xxx:8080` into the search bar of the browser, where `xxx.xxx.xxx.xxx` is the IP adress of the server (which you set earlier in the setup).
 
-#### OpenVPM: Remote Access
+#### OpenVPN: Remote Access
 You might like to be able to remotely connect to the server from another PC to offer remote support, if neccessary. We found that the easiest way to accomplish this was to setup the server as a host on a virtual private network (VPN). Then if you connect a PC to the same VPN, it is really easy to connect to the server via SSH or a remote desktop protocol such as VNC. 
 
 We use the open-source VPN, [OpenVPN](https://openvpn.net/). OpenVPN also offers a service which allows you to host a VPN on their network with up to three connections for free. This was more then enough for our usecase because we used one connection for the server and another for the PC providing remote support.
