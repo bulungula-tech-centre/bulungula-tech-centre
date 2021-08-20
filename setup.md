@@ -71,3 +71,16 @@ Congratulations you have successfully setup Pi Server.
 If you are going to use your Pis as a learning center in a school you might like to consider installing [Kolibri](https://github.com/learningequality/kolibri) on the server. Kolibri as an open-source project which provides a digital learning experience for offline computer labs. Head over to the download page and follow the instruction on how to set it up on Ubuntu. 
 
 [Download Kolibri](https://learningequality.org/download/)
+
+Once you have Kolibri setup on the server, you should be able to reach Kolibri from any of the Pis by typing  `xxx.xxxx.xxx.xxx:8080` into the search bar of the browser, where `xxx.xxx.xxx.xxx` is the IP adress of the server (which you set earlier in the setup).
+
+#### OpenVPM: Remote Access
+You might like to be able to remotely connect to the server from another PC to offer remote support, if neccessary. We found that the easiest way to accomplish this was to setup the server as a host on a virtual private network (VPN). Then if you connect a PC to the same VPN, it is really easy to connect to the server via SSH or a remote desktop protocol such as VNC. 
+
+We use the open-source VPN, [OpenVPN](https://openvpn.net/). OpenVPN also offers a service which allows you to host a VPN on their network with up to three connections for free. This was more then enough for our usecase because we used one connection for the server and another for the PC providing remote support.
+
+Here is a good tutorial on how to setup OpenVPN. 
+[Setup OpenVPN for Remote Desktop](https://openvpn.net/for/securing-rdp-for-remote-work/)
+
+We chose to use VNC as our remote desktop protocol instead of RDP, but that is up to you. If you chose to use VNC, we reccomend installing `x11vnc` on the server. 
+[Setup X11VNC](https://tecadmin.net/setup-x11vnc-server-on-ubuntu-linuxmint/)
