@@ -7,58 +7,67 @@ layout: guide
 aside: True
 ---
 
-> #### What you will need:
-> - *n* x Raspberry Pi 4s (*n* will depend on your use case, we had 15)
-> - One micro SD card for initial setup of the Pis
->   - Minimum 8GB
-> - A server computer (this can be a laptop, another Pi, a desktop computer or an actual server)
->   - For any of these options, a decent storage capacity will be required (Minimum 64GB) to boot from and serve content to the client Pis
->   - Depending on your use-case you may need a lot more storage (our server has a 480GB SSD which holds all the offline educational content)
-> - *n+2* ethernet cables
-> - A switch (with at least *n+2* ports)
->   - This can be a gigabit switch (recommended) or a router configured to act as a switch
-> - 4G/LTE Router (use as DHCP server)
-> - *n* x accessories for each of the Pis
->   - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies, headphones etc.
+### What you will need
+- *n* x Raspberry Pi 4s (*n* will depend on your use case, we had 15).
+- One micro SD card for initial setup of the Pis.
+  - Minimum 8GB.
+- A server computer (this can be a laptop, another Pi, a desktop computer or an actual server).
+  - For any of these options, a decent storage capacity will be required (Minimum 64GB) to boot from and serve content to the client Pis.
+  - Depending on your use-case you may need a lot more storage (our server has a 480GB SSD which holds all the offline educational content).
+- *n+2* ethernet cables to connect all the Pi's to the local network. 
+- A switch (with at least *n+2* ports).
+  - This can be a gigabit switch (recommended) or a router configured to act as a switch.
+- 4G/LTE router for internet and to act as the DHCP server for the Pis.
+- *n* x accessories for each of the Pis.
+  - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies for the Pis, headphones etc.
 
 ### Setting up the Client Pis
-- You will need to first boot the Pis from an SD card. In order to do this, we recommend you use [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to write your chosen OS ([Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
+- The first thing we need to do is set the Pis up for network booting. By default the Pis atempt to boot up from the SD card, but we can configure the Pis to atempt booting up from the network.
+- You will need to first boot the Pis from an SD card to configure it for network booting. In order to do this, we recommend you use [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to write your chosen OS ([Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
 
 - Then repeat the following for each of the Raspberry Pi 4s that are going to be used as client devices:
-  - Insert the SD card into the Pi and connect the power supply
-  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting
-  - Once booted, go to the terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line: 
+  - Insert the SD card into the Pi and connect the power supply.
+  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting.
+  - Once booted, open a terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line to open the Raspberry Pi Configuration Tool: 
   
-    ```shell
-    echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt
-    ```
+    `sudo raspi-config`
   
-    This adds "*program_usb_boot_mode=1*" to the end of the *config.txt* file. Now the Pi should be able to boot from a network.
-
-  - Reboot the Raspberry Pi with `sudo reboot`
-  - Once it has rebooted, check that the OTP has been programmed by running the following command in the terminal:
-
-    ```shell
-    vcgencmd otp_dump | grep 17:
-    ```
-
-    If the output is  `0x3020000a`, then you have been successful.
-
-   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
-    - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
+  - Use the keyboard to enter the `Boot Options` menu and enable network booting from here.
+  - Reboot the Raspberry Pi with `sudo reboot`.
+  - Your Pi 4 should atempt to network boot from now onwards whenever an SD card is not in the Pi. We can now move on to setting up the ethernet network to connect     the Pis to the server. 
 
 
-### Physical Device Setup
-The Pis, Server and Router have to be connected to create a local network. This is where the Switch comes in handy. All devices should be connected as shown in the Wiring Diagram below. Do not insert the power supplies into the Pis yet. (why not?)
+### Setting up the local network
+The Pis, Server and Router have to be connected together via ethernet to form a local network. Use the ethernet cables to connect each of the Pis to the router. If you have more Pis then you have ethernet ports on your router then you will need to buy a network switch to expand the number of ports. If you use a switch, remember that you still need to connect the router to the switch because the router acts as the DHCP server (i.e. it assigns IP adresses to the devices on the network) and without a DHCP server the setup will not work. Finally, the server should also be connected to the network via ethernet. 
+
+We provide a wiring diagram below.
 
 ![WiringDiagram](/assets/images/setup_guide/WiringDiagramV2.png)
 
+Once all the devices (Pis, server, switch and router) are connected together via ethernet you can try turning everything on. Remeber to remove the SD card from all the Pis. At this point the the Pis should just get stuck on the boot screen because they are atempting to network boot but we have not configured the server to provide the OS yet. Lets do that next.
+
+One other important thing to do at this stage is to configure your router to give the server a fixed (static) IP adress. This is important later on because the Pis need to know exactly which IP adress to go to to get the OS when they boot up. If the IP adress of the server changes then the Pis will fail to boot. You should google the model of your router and find instructions on how to set a static IP adress for a device. It is generally speaking not too tricky, you will need to login to your routers user interface and change a couple settings. 
+
 ### Setting up the Server
-We have used a relively beefy desktop computer running [Pop!\_OS](https://pop.system76.com/) (other Linux distributions should/could work).
+As mentioned before, you can use a laptop, desktop or even another Pi as the server. But the server will need a fair amount of storage since it will store the filesystem for all of the networked Pis. So we recomend using a laptop running Ubuntu 20.04. The server needs to be running linux because we will be using an open-source bit of software called Pi Server.
 
-Once you have your server PC up and running, the first step is to install `piserver`. Follow the instructiona on [piserver's GitHub page](https://github.com/raspberrypi/piserver)
-\* You might need to run `sudo apt update` and `sudo apt upgrade` first
+Pi Server makes it as easy as plug-and-play to network boot Raspberry Pis. Head over to the Pi Server GitHub repo and follow their instructions on how to build and install Pi Server.
 
-...more needed here?
+[Pi Server's GitHub page](https://github.com/raspberrypi/piserver)
 
-...continue adding from the "Bulungula Tech Centre Guide" in the drive
+Once you have Pi Server installed you can start it by typing `sudo piserver` into a terminal window. You should see the Pi Server GUI window pop up with a setup wizard. Follow the prompts on screen until you get to the section on `adding clients`. At this stage you should hopefully start seeing your client Pis apearing on the list (the MAC adresses of the Pis appear in the list). If nothing is apearing in the list then you should:
+  - Ensure that the server, Pis, switch and router are all connected properly. A good troublshooting trick is to reboot everything (when in doubt reboot everything). I would suggest powering off the Pis, switch and router. Then turn everything back on but in the following order: First turn the router on and give it some time to reboot properly. Then turn the switch on. Finally, turn all of the Pis back on. Hopefully after 10-15 seconds the Pis will start apearing on the list now.
+  - If the Pis are still not showing up, you may need to go back and check that you properly configured them for networking booting and that you didnt accidently leave a SD card in the Pi.
+
+Once all your Pis apear on the list you can go through the rest of the Pi Server setup wizard. At some stage in the setup you will need to chose an operating system (OS) to use for the Pis. We recomend selecting `Raspberry Pi OS Full` since it includes a fully fledged desktop environment and usefull applications. It will take some time to download the OS from the internet, so be patient.
+
+Once you get to the end of the setup, the Pi 4s should automatically receive the OS from the server and proceeed to booting up. Hopefully after a minute or two the Pis will boot into a login screen. At this point you should be able to use the login details you created during setup to login to your network booted Pi.
+
+Congratulations you have successfully setup Pi Server.
+
+### Optional Extras
+
+#### Kolibri: Offline Learning Platform
+If you are going to use your Pis as a learning center in a school you might like to consider installing [Kolibri](https://github.com/learningequality/kolibri) on the server. Kolibri as an open-source project which provides a digital learning experience for offline computer labs. Head over to the download page and follow the instruction on how to set it up on Ubuntu. 
+
+[Download Kolibri](https://learningequality.org/download/)
