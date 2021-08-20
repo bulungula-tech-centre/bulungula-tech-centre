@@ -8,7 +8,7 @@ aside: false
 
 The Bulungula Incubator is located in one of the most rural parts of the Mbhashe municipality, which is one of the poorest in South Africa (according to latest census results). Here, there is no electricity, limited infrastructure and treacherous dirt roads. Educational and employment outcomes amplify the consequences of poor service delivery. Youth unemployment is above 90 percent and barely five percent of adults finish high school. It is not likely that the youth of Xhora Mouth will have access to the same educational facilities, teachers, resources or tools that urban areas have anytime soon. 
 
-![StoryImage1]()
+![StoryImage1](/assets/images/story/landscape.jpg)
 
 Around the world, effective use of technology at school is advancing education across the globe. However,  lack of electricity, high data prices and non-availability of electronic devices create considerable obstacles for young individuals in rural areas to achieve their full potential. In partnership with The Delta, as a pilot project for rural schools, we set up the Bulungula Tech Centre — a low-cost tech centre equipped with 16 computer stations.
 
