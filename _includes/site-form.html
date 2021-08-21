@@ -12,6 +12,7 @@
 {% assign thanks_url = "/thanks/" %}
 {% endif %}
 
+
 <form class="form  form--{{ name_id }}" method="post" name="{{ name }}" action="{{ thanks_url }}" {% if
   include.netlify_form %} netlify-honeypot="bot-field" netlify {% endif %}>
   <fieldset class="fieldset  form__fieldset">
@@ -43,19 +44,13 @@
 </form>
 {% unless include.netlify_form %}
 <script>
+  window.onload = function () {
+    var form = document.querySelector(".form--{{ name_id }}");
+    form.reset();
+  };
   var form = document.querySelector(".form--{{ name_id }}");
   form.setAttribute("action", "https://formspree.io/f/mvodvvja");
-  form.reset();
-  // function submitForm() {
-  //   // Get the first form with the name
-  //   // Usually the form name is not repeated
-  //   // but duplicate names are possible in HTML
-  //   // Therefore to work around the issue, enforce the correct index
   //   var frm = document.getElementsByName('Contact')[0];
-  //   frm.submit(); // Submit the form
-  //   frm.reset();  // Reset all form data
-  //   return false; // Prevent page refresh
-  // }
 </script>
 <noscript>Please enable JavaScript to use the form.</noscript>
 
