@@ -152,5 +152,7 @@ fonts:
 
 guide_categories:
   - Setting up the Client Pis
-  - Physical Device Setup
+  - Setting up the local network
   - Setting up the Server
+  - Optional Extras
+
