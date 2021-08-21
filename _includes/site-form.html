@@ -44,13 +44,11 @@
 </form>
 {% unless include.netlify_form %}
 <script>
+  var form = document.querySelector(".form--{{ name_id }}");
   window.onload = function () {
-    var form = document.querySelector(".form--{{ name_id }}");
     form.reset();
   };
-  var form = document.querySelector(".form--{{ name_id }}");
   form.setAttribute("action", "https://formspree.io/f/mvodvvja");
-  //   var frm = document.getElementsByName('Contact')[0];
 </script>
 <noscript>Please enable JavaScript to use the form.</noscript>
 
