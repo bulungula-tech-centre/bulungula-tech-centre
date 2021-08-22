@@ -4,7 +4,7 @@ categories:
 feature_image: /assets/images/blog/firstClass.jpg
 ---
 
-This is a news announcement origionally posted by the [`Bulungula Incubator`](https://bulungulaincubator.org/the-bulungula-tech-centre-is-now-open/).
+This is a news announcement origionally posted by the [Bulungula Incubator](https://bulungulaincubator.org/the-bulungula-tech-centre-is-now-open/).
 
 Effective use of technology at school is advancing education across the globe. However, lack of electricity and non-availability to electronic devices in our areas creates considerable obstacles for our learners to achieve their full potential. In partnership with The Delta, as a pilot project for rural schools, we set up the Bulungula Tech Centre— a low-cost tech centre equipped with 16 computer stations.
 
