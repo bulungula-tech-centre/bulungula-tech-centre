@@ -1,5 +1,5 @@
 # Bulungula Tech Centre
-This repository contains the instructions to replicate the low-cost, low-power computer lab we built at the Bulungula College, a school in rural South Africa. Our goal was to use free and open-source software to make this solution as accessible as possible. Please see our [`GitHub Pages Site`](https://bulungula-tech-centre.github.io/) for more about the project's motivation and context.
+This repository contains the instructions to replicate the low-cost, low-power computer lab we built at the Bulungula College, a school in rural South Africa. Our goal was to use free and open-source software to make this solution as accessible as possible. Please see our [`Webite`](https://bulungula-tech-centre.github.io/) for more about the project's motivation and context. If you have any technical questions, please raise them in the [`Issues`](https://github.com/bulungula-tech-centre/bulungula-tech-centre.github.io/issues) section. 
 
 ## Overview
 
@@ -38,26 +38,18 @@ Another very important consideration when developing a solution for a remote loc
 >   - Monitors, keyboards, mouses, microHDMI-to-HDMI cables, power supplies, headphones etc.
 
 ### Setting up the Client Pis
-- You will need to first boot the Pis from an SD card. In order to do this, we recommend you use [`Raspberry Pi Imager`](https://www.raspberrypi.org/software/) to write your chosen OS ([`Raspberry Pi OS`](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
+- The first thing we need to do is set the Pis up for network booting. By default the Pis atempt to boot up from the SD card, but we can configure the Pis to atempt booting up from the network.
+- You will need to first boot the Pis from an SD card to configure it for network booting. In order to do this, we recommend you use [Raspberry Pi Imager](https://www.raspberrypi.org/software/) to write your chosen OS ([Raspberry Pi OS](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit) is probably simplest) to the SD card
 
 - Then repeat the following for each of the Raspberry Pi 4s that are going to be used as client devices:
-  - Insert the SD card into the Pi and connect the power supply
-  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting
-  - Once booted, go to the terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line: 
-  
-    `echo program_usb_boot_mode=1 | sudo tee -a /boot/config.txt`
-  
-    This adds "*program_usb_boot_mode=1*" to the end of the *config.txt* file. Now the Pi should be able to boot from a network.
+  - Insert the SD card into the Pi and connect the power supply.
+  - Connect the Pi to a display with a microHDMI-to-HDMI cable. You should see the Pi booting.
+  - Once booted, open a terminal (CTRL+ALT+T from the RPi-OS desktop) and type the following line to open the Raspberry Pi Configuration Tool:   `sudo raspi-config`
+  - Use the keyboard to enter the `Boot Options` menu and enable network booting from here.
+  - Reboot the Raspberry Pi with `sudo reboot`.
+  - Your Pi 4 should atempt to network boot from now onwards whenever an SD card is not in the Pi. We can now move on to setting up the ethernet network to connect     the Pis to the server. 
 
-  - Reboot the Raspberry Pi with `sudo reboot`
-  - Once it has rebooted, check that the OTP has been programmed by running the following command in the terminal:
-
-    `vcgencmd otp_dump | grep 17:`
-
-    If the output is  `0x3020000a`, then you have been successful.
-
-   - The Pi configuration is almost done. The final thing to do is to remove the `program_usb_boot_mode` line from *config.txt* (also make sure there is no blank line at the end). You can do this with any text editor (`sudo nano /boot/config.txt`, for example). 
-    - Finally, shut the Raspberry Pi down (`sudo poweroff`). 
+If you power up your Pi 4 now without an SD card in it, it should get stuck on a black debug screen with the Raspberry Pi logo in the top right hand corner. This screen usually displays some useful information which you can use to diagnose what is going wrong incase your Pi won't boot. But for now, we expect our Pi to get stuck here because we have not connected it to a server that can give it an OS.
 
 
 ### Physical Device Setup
