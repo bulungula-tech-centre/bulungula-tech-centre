@@ -58,9 +58,9 @@ timezone: Africa/South_Africa # Timezone for blog posts and alike
 # 5. Collections
 collections:
   posts:
-    title: Posts # Needed for Siteleaf
+    title: Blog Posts # Needed for Siteleaf
     output: true
-    description: "My thoughts and ideas" # The post list page content
+    description: "A collection of articles, ideas and stories from the Bulungula Tech Centre." # The post list page content
     feature_text: |
     feature_image: "/assets/images/blog/wave.png"
 
