@@ -92,3 +92,7 @@ Here is a good tutorial on how to setup OpenVPN.
 
 We chose to use VNC as our remote desktop protocol instead of RDP, but that is up to you. If you chose to use VNC, we reccomend installing `x11vnc` on the server. 
 [Setup X11VNC](https://tecadmin.net/setup-x11vnc-server-on-ubuntu-linuxmint/)
+
+
+### Reporting Issues
+If you encounter an issue when following this guide and you are comfortable with GitHub, please create an issue [here](https://github.com/bulungula-tech-centre/bulungula-tech-centre.github.io/issues). We will respond as timeously as possible. If you are unfamiliar with GitHub, please use the [Contact Us](./contact.md) page.
