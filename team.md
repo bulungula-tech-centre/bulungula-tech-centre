@@ -9,3 +9,5 @@ aside: false
 ### The Operations Team
 
 The Bulungula Tech Centre managers run the day to day operations of the centre which includes facilitating workshops, classroom assistance, translations, general lab management, managing offline content and maintenance. 
+
+{% include team.html %}
