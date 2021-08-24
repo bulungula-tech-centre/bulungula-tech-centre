@@ -121,6 +121,8 @@ navigation_header:
   url: /blog/
 - title: Our Story
   url: /story/
+- title: The Team
+  url: /team/
 - title: Contact us
   url: /contact/
 
