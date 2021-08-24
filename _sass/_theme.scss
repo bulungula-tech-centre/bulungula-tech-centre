@@ -570,28 +570,8 @@ pre code {
 }
 
 /* Clear floats */
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-.title {
-  color: grey;
-}
-
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
-
-.button:hover {
-  background-color: #555;
-}
+// .container::after, .row::after {
+//   content: "";
+//   clear: both;
+//   display: table;
+// }
