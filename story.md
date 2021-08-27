@@ -1,7 +1,7 @@
 ---
 title: Our Story
 feature_text: |
-feature_image: "/assets/images/team/students_in_lab.jpeg"
+feature_image: "/assets/images/story/students_in_lab.jpeg"
 excerpt: "Why the project was started"
 aside: false
 ---
