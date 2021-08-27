@@ -1,7 +1,7 @@
 ---
 title: The Bulungula Tech Centre is Now Open!!
 categories:
-feature_image: /assets/images/blog/firstClass.jpg
+feature_image: /assets/images/blog/student_on_computer.png
 ---
 
 This is a news announcement origionally posted by the [Bulungula Incubator](https://bulungulaincubator.org/the-bulungula-tech-centre-is-now-open/).
