@@ -22,7 +22,7 @@ Another very important consideration when developing a solution for a remote loc
 ---
 
 ## Setup Guide
-You can find our setup guid [here](https://bulungula-tech-centre.github.io/setup/)
+You can find our setup guid [here](https://bulungula-tech-centre.github.io/setup/).
 
 ### Troubleshooting
-You can find a list of the most common issues and how to resolve them [here](https://github.com/bulungula-tech-centre/bulungula-tech-centre.github.io/blob/main/TROUBLESHOOTING.md)
+You can find a list of the most common issues and how to resolve them [here](https://github.com/bulungula-tech-centre/bulungula-tech-centre.github.io/blob/main/TROUBLESHOOTING.md).
