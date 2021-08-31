@@ -556,9 +556,17 @@ pre code {
   padding: 0 8px;
 }
 
+/* Three columns side by side */
+.column_build {
+  float: left;
+  width: 50%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+}
+
 // /* Display the columns below each other instead of side by side on small screens */
 @media screen and (max-width: 650px) {
-  .column {
+  .column .column_build {
     width: 100%;
     display: block;
   }
