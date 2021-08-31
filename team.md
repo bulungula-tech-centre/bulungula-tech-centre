@@ -13,4 +13,8 @@ The Bulungula Tech Centre was created by a group of recent graduates from the Un
 
 The Bulungula Tech Centre managers run the day to day operations of the centre which includes facilitating workshops, classroom assistance, translations, general lab management, managing offline content and maintenance. 
 
-{% include team.html %}
+{% include op_team.html %}
+
+### The Build Team
+
+{% include build_team.html %}
