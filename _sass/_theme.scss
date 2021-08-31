@@ -582,10 +582,7 @@ pre code {
   font-size: 1em;
 }
 
-
-/* Clear floats */
-// .container::after, .row::after {
-//   content: "";
-//   clear: both;
-//   display: table;
-// }
+.team_small{
+  font-size: 0.8em;
+  line-height: 180%;
+}
