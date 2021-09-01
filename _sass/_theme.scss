@@ -587,12 +587,15 @@ pre code {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   .team_small {
-    transition: opacity 0.5s ease-in;
     opacity:0;
   }
 }
 
 .card_build:hover {
+  .team_small {
+    transition: opacity 0.5s ease;
+    opacity:0;
+  }
   img {opacity:0;}
   h6 {opacity:0;}
   .title {opacity:0;}
