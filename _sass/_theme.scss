@@ -581,6 +581,10 @@ pre code {
 /* Add some shadows to create a card effect */
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card_build {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   .team_small {
     transition: opacity 0.5s ease-in-out;
     position:absolute;
@@ -590,7 +594,7 @@ pre code {
   }
 }
 
-.card:hover {
+.card_build:hover {
   img {opacity:0;}
   h6 {opacity:0;}
   .title {opacity:0;}
