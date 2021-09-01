@@ -20,3 +20,10 @@ The Bulungula Tech Centre managers run the day to day operations of the centre w
 The centre was developed primarily in Cape Town by the following individuals:
 
 {% include build_team.html %}
+
+### Our Partners
+
+The project would not have been possible without the guidance and funding from our partners.
+
+
+{% include partners.html %}
