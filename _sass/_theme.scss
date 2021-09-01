@@ -474,6 +474,9 @@ pre code {
     white-space: pre;
     overflow-x: scroll;
   }
+  .team_small{
+    line-height: 180%;
+  }
 }
 
 @keyframes fadeInAnimation {
@@ -610,7 +613,6 @@ pre code {
 
 .team_small{
   font-size: 0.65em;
-  line-height: 180%;
   position: absolute;
   top: 2%;
   left: 5%;
