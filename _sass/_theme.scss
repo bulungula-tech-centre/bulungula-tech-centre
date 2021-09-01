@@ -587,7 +587,7 @@ pre code {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   position: relative;
   .team_small {
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in;
     opacity:0;
   }
 }
@@ -609,6 +609,6 @@ pre code {
   font-size: 0.7em;
   line-height: 180%;
   position: absolute;
-  top: 0px;
-  left: 0px;
+  top: 2%;
+  left: 5%;
 }
