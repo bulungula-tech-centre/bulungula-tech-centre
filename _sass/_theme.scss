@@ -559,23 +559,9 @@ pre code {
   padding: 0 8px;
 }
 
-.column_build {
-  float: left;
-  width: 50%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-.column_person {
-  float: left;
-  width: 50%;
-  margin-bottom: 0px;
-  padding: 0 0px;
-}
-
 // /* Display the columns below each other instead of side by side on small screens */
 @media screen and (max-width: 650px) {
-  .column .column_build {
+  .column {
     width: 100%;
     display: block;
   }
