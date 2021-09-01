@@ -580,6 +580,14 @@ pre code {
   }
 }
 
+.card_blank {
+  box-shadow: 0 4px 8px 0 white;
+  position: relative;
+  .team_small {
+    opacity:0;
+  }
+}
+
 .card_build:hover {
   .team_small {
     transition: opacity 0.5s ease;
